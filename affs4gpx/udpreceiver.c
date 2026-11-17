@@ -151,9 +151,8 @@ void *fcn_udpreceiver(void*)
 				PARSE_DOUBLE(_track)
 				PARSE_DOUBLE(_groundspeed)
 				smooth_track(LOCKED_TIME, _track, _groundspeed, &_latitude, &_longitude);
-				WRITE_MAPPING(channel_longitude, _longitude)
-				WRITE_MAPPING(channel_latitude, _latitude)
-				WRITE_MAPPING(channel_altitude, _altitude)
+				GpsLocation location = { _latitude, _longitude, _altitude };
+				WRITE_MAPPING(channel_location, location)
 				WRITE_MAPPING(channel_track, _track)
 				WRITE_MAPPING(channel_groundspeed, _groundspeed)
 			PACKET("XATTAerofly FS 4")
